@@ -48,9 +48,9 @@
             <a href="logout.php" class="btn btn-index" style="margin-top: 0;">Logout</a>
         <?php else: ?>
             <h1>Start learning</h1>
-            <a href="student/login.php" class="btn btn-index" style="margin-bottom: 6px;">Login</a>
+            <a href="login.php" class="btn btn-index" style="margin-bottom: 6px;">Login</a>
             <h1>Don't have an account?</h1>
-            <a href="student/signup.php" class="btn btn-index" style="margin-top: 0;">Sign up</a>
+            <a href="signup.php" class="btn btn-index" style="margin-top: 0;">Sign up</a>
         <?php endif; ?>
     </div>
 </div>
