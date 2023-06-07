@@ -64,7 +64,28 @@
         <p>You are already enrolled in this course</p>
         <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
     <?php else: ?>
-        <a href="../student/enroll.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Enroll</a>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
     <?php endif; ?>
+
+    <!-- Modal Enroll -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Confirm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    Do you want to enroll in this course?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="../student/enroll.php?id=<?php echo $course['course_id'] ?>" class="btn btn-success">Enroll</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
