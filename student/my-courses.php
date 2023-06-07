@@ -1,31 +1,35 @@
 <?php 
     session_start();
     require '../connection.php';
-    $teacher_id = NULL;
-    if (isset($_SESSION['teacher_id'])) {
-        $query = "SELECT * FROM teachers WHERE teacher_id = :id";
+    $student_id = NULL;
+    if (isset($_SESSION['student_id'])) {
+        $query = "SELECT * FROM students WHERE student_id = :id";
         $registro = $conn->prepare($query);
-        $registro->bindParam(':id', $_SESSION['teacher_id']);
+        $registro->bindParam(':id', $_SESSION['student_id']);
         $registro->execute();
         $resultado = $registro->fetch(PDO::FETCH_ASSOC);
-        $teacher = null;
+        $student = null;
         if(count($resultado) > 0){
-            $teacher = $resultado;
-            $teacher_id = $teacher['teacher_id'];
+            $student = $resultado;
+            $student_id = $student['student_id'];
         }
-    }
+    } 
 
     $query_courses = "SELECT courses.course_id AS 'course_id',
                             courses.course_name AS 'name',
-                            (SELECT COUNT(*) FROM register WHERE register.reg_course_id = courses.course_id) AS students
-                        FROM courses
+                            CONCAT(teachers.teacher_name, ' ', teachers.teacher_lastname) AS teacher
+                        FROM courses 
+                        INNER JOIN register
+                            ON register.reg_course_id = courses.course_id
+                        INNER JOIN students
+                            ON students.student_id = register.reg_student_id
                         INNER JOIN teachers
                             ON teachers.teacher_id = courses.course_teach_id
-                        WHERE teachers.teacher_id = $teacher_id
-                        ORDER BY courses.course_name";
-    $stmt = $conn->prepare($query_courses);
-    $stmt->execute();
-    $result_courses = $stmt->fetchAll();
+                        WHERE students.student_id = $student_id
+                        ORDER BY register.reg_date";
+    $prep = $conn->prepare($query_courses);
+    $prep->execute();
+    $resultado_courses = $prep->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -41,14 +45,12 @@
 <body>
     <div class="box">
         <div class="container">
-            <?php if(!empty($teacher)): ?>
-                <br>Welcome <?= $teacher['teacher_name']; ?>
-                <br><br> Your courses <br><br>
-            <?php endif; ?>
+            <h4>Your courses </h4>
+            <br><br>
         </div>
     </div>
 
-    <?php foreach($result_courses as $course): ?>
+    <?php foreach($resultado_courses as $course): ?>
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -57,9 +59,8 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $course['name'] ?></h5>
-                        <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
-                        <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
-                        <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Details</a>
+                        <p class="card-text">Teacher: <?php echo $course['teacher'] ?></p>
+                        <a href="../student/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
