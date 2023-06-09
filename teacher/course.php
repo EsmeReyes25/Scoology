@@ -33,18 +33,34 @@
     <title><?php echo $course['name'] ?></title>
 </head>
 <body>
-    <h2><?php echo $course['name'] ?></h2>
-    <br>
-    <h4>About this course</h4>
-    <p><?php echo $course['description'] ?></p>
-    <br>
-    <h4>Prerequisites</h4>
-    <p><?php echo $course['prereq'] ?></p>
-    <br>
-    <h6>Students enrolled: <?php echo $course['students'] ?></h6>
-    <br><br>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">Edit</button>
-    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+        <!-- Incluir la barra de navegación -->
+        <?php include '../partials/header.php'; ?>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Incluir la barra lateral -->
+        <?php include '../partials/teacher-sidebar.html'; ?>
+        <div class="col-8">
+        <!-- Contenido principal -->
+            <h2><?php echo $course['name'] ?></h2>
+            <br>
+            <h4>About this course</h4>
+            <p><?php echo $course['description'] ?></p>
+            <br>
+            <h4>Prerequisites</h4>
+            <p><?php echo $course['prereq'] ?></p>
+            <br>
+            <h6>Students enrolled: <?php echo $course['students'] ?></h6>
+            <br><br>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">Edit</button>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+        </div>
+    </div>
+    </div>
 
     <!-- Modal Delete -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

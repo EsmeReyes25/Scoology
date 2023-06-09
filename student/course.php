@@ -51,21 +51,37 @@
     <title><?php echo $course['name'] ?></title>
 </head>
 <body>
-    <h2><?php echo $course['name'] ?></h2>
-    <h5>Teacher: <?php echo $course['teacher'] ?></h5>
-    <br>
-    <h4>About this course</h4>
-    <p><?php echo $course['description'] ?></p>
-    <br>
-    <h4>Prerequisites</h4>
-    <p><?php echo $course['prereq'] ?></p>
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+        <!-- Incluir la barra de navegación -->
+        <?php include '../partials/header.php'; ?>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Incluir la barra lateral -->
+        <?php include '../partials/student-sidebar.html'; ?>
+        <div class="col-8">
+        <!-- Contenido principal -->
+            <h2><?php echo $course['name'] ?></h2>
+            <h5>Teacher: <?php echo $course['teacher'] ?></h5>
+            <br>
+            <h4>About this course</h4>
+            <p><?php echo $course['description'] ?></p>
+            <br>
+            <h4>Prerequisites</h4>
+            <p><?php echo $course['prereq'] ?></p>
 
-    <?php if ($register): ?>
-        <p>You are already enrolled in this course</p>
-        <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
-    <?php else: ?>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
-    <?php endif; ?>
+            <?php if ($register): ?>
+                <p>You are already enrolled in this course</p>
+                <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
+            <?php else: ?>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
+            <?php endif; ?>
+        </div>
+    </div>
+    </div>
 
     <!-- Modal Enroll -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

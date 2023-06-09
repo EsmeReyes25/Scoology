@@ -39,31 +39,47 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="box">
-        <div class="container">
-            <?php if(!empty($teacher)): ?>
-                <br>Welcome <?= $teacher['teacher_name']; ?>
-                <br><br> Your courses <br><br>
-            <?php endif; ?>
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+        <!-- Incluir la barra de navegación -->
+        <?php include '../partials/header.php'; ?>
         </div>
     </div>
-
-    <?php foreach($result_courses as $course): ?>
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $course['name'] ?></h5>
-                        <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
-                        <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
-                        <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Details</a>
-                    </div>
+    <div class="row">
+        <!-- Incluir la barra lateral -->
+        <?php include '../partials/teacher-sidebar.html'; ?>
+        <div class="col-8">
+        <!-- Contenido principal -->
+            <div class="box">
+                <div class="container">
+                    <?php if(!empty($teacher)): ?>
+                        <br>Welcome <?= $teacher['teacher_name']; ?>
+                        <br><br> Your courses <br><br>
+                    <?php endif; ?>
                 </div>
             </div>
+
+            <?php foreach($result_courses as $course): ?>
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $course['name'] ?></h5>
+                                <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
+                                <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
+                                <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
         </div>
-    <?php endforeach ?>
+    </div>
+    </div>
 </body>
 </html>

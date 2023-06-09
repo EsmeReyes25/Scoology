@@ -45,18 +45,34 @@
     <title>Edit course</title>
 </head>
 <body>
-    <div>
-        <div>
-            <form action="../teacher/edit.php?id=<?php echo $course_id?>" method="post">
-                <label for="name">Name of the course</label>
-                <input type="text" name="name" value="<?php echo $course['name']?>" placeholder="Enter the name of the course" required>
-                <label for="description">Description</label>
-                <input type="text" name="description" value="<?php echo $course['description']?>" placeholder="Enter a brief description of the course" required>
-                <label for="prerequisites">Prerequisites (optional)</label>
-                <input type="text" name="prerequisites" value="<?php echo $course['prereq']?>" placeholder="Enter the prerequisites of the course">
-                <input type="submit" class="btn btn-primary" value="Save">
-            </form>
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+        <!-- Incluir la barra de navegación -->
+        <?php include '../partials/header.php'; ?>
         </div>
+    </div>
+    <div class="row">
+        <!-- Incluir la barra lateral -->
+        <?php include '../partials/teacher-sidebar.html'; ?>
+        <div class="col-8">
+        <!-- Contenido principal -->
+            <div>
+                <div>
+                    <form action="../teacher/edit.php?id=<?php echo $course_id?>" method="post">
+                        <label for="name">Name of the course</label>
+                        <input type="text" name="name" value="<?php echo $course['name']?>" placeholder="Enter the name of the course" required>
+                        <label for="description">Description</label>
+                        <input type="text" name="description" value="<?php echo $course['description']?>" placeholder="Enter a brief description of the course" required>
+                        <label for="prerequisites">Prerequisites (optional)</label>
+                        <input type="text" name="prerequisites" value="<?php echo $course['prereq']?>" placeholder="Enter the prerequisites of the course">
+                        <input type="submit" class="btn btn-primary" value="Save">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 </html>
