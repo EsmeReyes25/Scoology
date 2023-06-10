@@ -8,3 +8,102 @@
     flex-direction: column;
     align-items: center;
 }
+
+/* Header */
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+    margin-top: 12px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: all 0.35s ease-in-out;
+}
+
+.sidebar-logo {
+    padding: 1.15rem 1.5rem;
+}
+
+.sidebar-logo a {
+    font-size: 1.25rem;
+    font-weight: 600px;
+}
+
+i{
+    font-size: 1.5rem;
+    padding: .625rem 1.625rem;
+}
+
+i:hover{
+    cursor: pointer;
+}
+
+.hide {
+  max-height: 0 !important;
+  display: none;
+}
+
+.drop-menu{
+	transition: max-height .5s ease-out;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+    margin-top: .125rem;
+    position: absolute;
+    z-index: 1000;
+    min-width: 8rem;
+    padding: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+/* Sidebars */
+#sidebar {
+    max-width: 264px;
+    min-width: 264px;
+    transition: all 0.35s ease-in-out;
+    height: 100vh;
+}
+
+#sidebar.collapsed{
+    margin-left: -264px;
+}
+
+.sidebar-nav {
+    padding: 0;
+}
+
+.sidebar-header {
+    /* color de letra - color:brown */
+    font-size: 25px;
+    padding: 1.5rem 1.5rem .375rem;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    /* color de letra e icono - color: brown */
+    position: relative;
+    display: block;
+    font-size: 1.5rem;
+}
+
+/* Calendar */
+.calendar-day, .calendar-day-head{
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.calendar-day-head{
+    background: #ddd;
+}
