@@ -64,7 +64,7 @@
         <div class="dropdown user-drop">
           <i class="user-icon nav-link fa-solid fa-user dropdown-toggle" id="navbarDropdown" role="button" aria-expanded="false"></i>
           <ul class="drop-menu hide" aria-labelledby="navbarDropdown">
-            <li><a class="menu-option dropdown-item" href="#">Edit profile</a></li>
+            <li><a class="menu-option dropdown-item" href="../edit-profile.php">Edit profile</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
