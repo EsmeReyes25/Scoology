@@ -72,7 +72,7 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="col-8 offset-3">
                 <!-- Contenido principal -->
-                <div class="container border border-danger w-75 my-5 rounded">
+                <div class="container border border-danger w-100 my-5 rounded">
                     <div class="row align-items-stretch">
                         <div class="col bg d-lg-block"></div>
                         <!-- <div class="col"> -->

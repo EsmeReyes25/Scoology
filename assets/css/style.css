@@ -107,6 +107,17 @@ a.sidebar-link {
     background: #ddd;
 }
 
+.calendar {
+    height: 490px;
+}
+
+#currentMonthYear{
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Buttons a */
 .btn-index{
     display: inline-block;
