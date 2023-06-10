@@ -106,3 +106,21 @@ a.sidebar-link {
 .calendar-day-head{
     background: #ddd;
 }
+
+/* Buttons a */
+.btn-index{
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 7px 7px 7px;
+    background-color: #d2dadf;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;    
+    border-width: 0.5px;
+    border-style: outset;
+    height: 30px;
+    width: 25%;
+    margin: 7px;
+}
