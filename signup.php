@@ -118,6 +118,7 @@ if (!empty($_POST['name']) && !empty($_POST['lastname']) && !empty($_POST['age']
                         <span style="margin-top: -5px"> or
                             <a href="login.php" class="btn">Login</a>
                         </span>
+                    </div>
                 </form>
             </div>
         </div>

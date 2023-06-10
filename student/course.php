@@ -54,8 +54,10 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title><?php echo $course['name'] ?></title>
 </head>
-<body class="body-index">
-    <!-- Incluir la barra de navegación y la barra lateral -->
+<!-- <body class="body-index"> -->
+<!-- Incluir la barra de navegación y la barra lateral -->
+
+<body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -63,10 +65,12 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/student-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/student-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3">
                 <!-- Contenido principal -->
                 <div class="container border border-danger w-75 my-5 rounded">
                     <div class="row align-items-stretch">
@@ -127,52 +131,12 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
 </html>
 
 <style>
-    .body-index {
-    height: 100vh;
-    width: 100vw;
-    background-size: cover;
-    background-attachment: fixed;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url(../assets/images/principal.png);
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-  }
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+        .bg {
+        background-image: url(./assets/images/light-clouds-background.png);
+        background-position: center center;
+    }
 </style>
-<!-- <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-    <?php require '../partials/header.php' ?>
-    </div>
-  </div>
-  <div class="row">
-    <!-- Incluir la barra lateral
-    <?php require '../partials/bar.php' ?>
-    <div class="col-10">
-    <div class="container border border-danger w-75 my-5 rounded">
-        <div class="row align-items-stretch">
-            <div class="col bg d-lg-block"></div>
-            <!-- <div class="col"> 
-            <div class="col bg-primary p-5 d-flex justify-content-center">
-                <h2><?php echo $course['name'] ?></h2>
-                <h5>Teacher: <?php echo $course['teacher'] ?></h5>
-                <br>
-                <h4>About this course</h4>
-                <p><?php echo $course['description'] ?></p>
-                <br>
-                <h4>Prerequisites</h4>
-                <p><?php echo $course['prereq'] ?></p>
-                <?php if ($register) : ?>
-                    <p>You are already enrolled in this course</p>
-                    <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
-                <?php else : ?>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-    </div>
-  </div>
-</div> -->

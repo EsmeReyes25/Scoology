@@ -46,15 +46,17 @@ $resultado_courses = $prep->fetchAll();
     <!-- Incluir la barra de navegación y la barra lateral -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12";>
                 <!-- Incluir la barra de navegación -->
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/student-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/student-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3">
                 <!-- Contenido principal -->
                 <div class="container">
                     <div class="row">

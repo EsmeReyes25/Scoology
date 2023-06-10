@@ -56,20 +56,31 @@
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/teacher-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/teacher-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3" style="margin-top:20px">
                 <!-- Contenido principal -->
-                <div>
-                    <div>
+                <div class="container">
+                    <div class="row">
                         <form action="../teacher/edit.php?id=<?php echo $course_id ?>" method="post">
-                            <label for="name">Name of the course</label>
-                            <input type="text" name="name" value="<?php echo $course['name'] ?>" placeholder="Enter the name of the course" required>
-                            <label for="description">Description</label>
-                            <input type="text" name="description" value="<?php echo $course['description'] ?>" placeholder="Enter a brief description of the course" required>
-                            <label for="prerequisites">Prerequisites (optional)</label>
-                            <input type="text" name="prerequisites" value="<?php echo $course['prereq'] ?>" placeholder="Enter the prerequisites of the course">
+                        <div class="my-3">
+                            <label for="name" class="form-label">Name of the course</label>
+                            <input type="text" name="name" value="<?php echo $course['name'] ?>" class="form-control w-50" aria-describedby="courseHelp" required>
+                            <div id="courseHelp" class="form-text">Enter the name of the course</div>
+                        </div>
+                        <div class="my-3">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" name="description" value="<?php echo $course['description'] ?>" class="form-control w-50" aria-describedby="courseHelp" required>
+                            <div id="courseHelp" class="form-text">Enter a brief description of the course</div>
+                        </div>
+                        <div class="my-3">
+                            <label for="prerequisites" class="form-label">Prerequisites (optional)</label>
+                            <input type="text" name="prerequisites" value="<?php echo $course['prereq'] ?>" class="form-control w-50" aria-describedby="courseHelp" required>
+                            <div id="courseHelp" class="form-text">Enter the prerequisites of the course</div>
+                        </div>
                             <input type="submit" class="btn btn-primary" value="Save">
                         </form>
                     </div>

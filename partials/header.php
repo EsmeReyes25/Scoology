@@ -37,7 +37,7 @@
 
 <body>
   <div class="main">
-    <nav class="d-flex justify-content-between navbar navbar-expand px-3 border-bottom">
+    <nav class="d-flex bg-light justify-content-between navbar navbar-expand px-3 border-bottom fixed-top">
       <div>
         <button class="btn" type="button">
           <i class="fa-solid fa-bars lead"></i>

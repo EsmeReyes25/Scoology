@@ -3,7 +3,6 @@
     width: 100vw;
     background-size: cover;
     background-attachment: fixed;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;

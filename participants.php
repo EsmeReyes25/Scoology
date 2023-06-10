@@ -61,54 +61,55 @@ $result = $stmt->fetchAll();
 </head>
 
 <body>
-
-    <body>
-        <!-- Incluir la barra de navegación y la barra lateral -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Incluir la barra de navegación -->
-                    <?php include 'partials/header.php'; ?>
-                </div>
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Incluir la barra de navegación -->
+                <?php include 'partials/header.php'; ?>
             </div>
-            <div class="row">
-                <!-- Incluir la barra lateral -->
+        </div>
+        <div class="row" style="margin-top: 105px">
+            <!-- Incluir la barra lateral -->
+            <div class="col-3 position-fixed">
                 <?php if (!empty($student)) : ?>
                     <?php include 'partials/student-sidebar.html'; ?>
                 <?php elseif (!empty($teacher)) : ?>
                     <?php include 'partials/teacher-sidebar.html'; ?>
                 <?php endif; ?>
-                <div class="col-8">
-                    <!-- Contenido principal -->
-                    <h2><?php echo $result[0]['course_name'] ?></h2>
-                    <h5>Teacher: <?php echo $result[0]['teacher'] ?></h5>
-                    <br>
-                    <h5>Students enrolled in this course</h5>
-                    <table class="table table-striped">
-                        <thead>
+            </div>
+            <div class="col-8 offset-3" style="margin-top: 30px;">
+                <!-- Contenido principal -->
+                <h2><?php echo $result[0]['course_name'] ?></h2>
+                <h5>Teacher: <?php echo $result[0]['teacher'] ?></h5>
+                <br>
+                <h5>Students enrolled in this course</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Registration date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($result as $student) : ?>
                             <tr>
-                                <th>Student Name</th>
-                                <th>Email</th>
-                                <th>Age</th>
-                                <th>Registration date</th>
+                                <td><?php echo $student['student_name'] ?></td>
+                                <td><?php echo $student['email'] ?></td>
+                                <td><?php echo $student['age'] ?></td>
+                                <td><?php echo $student['reg_date'] ?></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($result as $student) : ?>
-                                <tr>
-                                    <td><?php echo $student['student_name'] ?></td>
-                                    <td><?php echo $student['email'] ?></td>
-                                    <td><?php echo $student['age'] ?></td>
-                                    <td><?php echo $student['reg_date'] ?></td>
-                                </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table>
-                </div>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </body>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
 </html>
 
 <style>

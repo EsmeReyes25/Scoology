@@ -54,10 +54,12 @@
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/student-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/student-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3 d-flex justify-content-center">
                 <!-- Contenido principal -->
                 <div class="container">
                     <div class="row d-flex justify-content-center">
@@ -90,7 +92,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
-</html>
 </html>
 
 <style>

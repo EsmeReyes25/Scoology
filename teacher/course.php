@@ -46,12 +46,14 @@ if ($result) {
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/teacher-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/teacher-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3">
                 <!-- Contenido principal -->
-                <div class="container border border-danger w-75 my-5 rounded">
+                <div class="container border border-danger w-100 my-5 rounded">
                     <div class="row align-items-stretch">
                         <div class="col bg d-lg-block"></div>
                         <!-- <div class="col"> -->

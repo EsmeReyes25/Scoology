@@ -56,10 +56,12 @@ if (!empty($_POST['name']) && !empty($_POST['description'])) {
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/teacher-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/teacher-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3" style="margin-top:20px">
                 <!-- Contenido principal -->
                 <div class="container">
                     <div class="row">
@@ -78,7 +80,7 @@ if (!empty($_POST['name']) && !empty($_POST['description'])) {
 
                             <div class="my-3">
                                 <label for="prerequisites" class="form-label">Prerequisites (optional)</label>
-                                <input type="text" name="prerequisites" class="form-control w-50" aria-describedby="prerequisitesHelp">
+                                <textarea type="text" name="prerequisites" class="form-control w-50" aria-describedby="prerequisitesHelp"></textarea>
                                 <div id="prerequisitesHelp" class="form-text">Enter the prerequisites of the course</div>
                             </div>
                             <input type="submit" class="btn btn-primary" value="Add course">

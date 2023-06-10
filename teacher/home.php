@@ -52,10 +52,12 @@ $result_courses = $stmt->fetchAll();
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/teacher-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/teacher-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3">
                 <!-- Contenido principal -->
                 <div class="container">
                     <div class="row">
@@ -70,7 +72,7 @@ $result_courses = $stmt->fetchAll();
                     </div>
                     <div class="container d-flex flex-wrap justify-content-between">
                         <?php foreach ($result_courses as $course) : ?>
-                            <div class="card mb-3" style="width: 45%;">
+                            <div class="card mb-2" style="width: 48%;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
                                         <img src="..." class="img-fluid rounded-start" alt="">
@@ -79,7 +81,7 @@ $result_courses = $stmt->fetchAll();
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $course['name'] ?></h5>
                                             <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
-                                            <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary mx-3">View participants</a>
+                                            <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
                                             <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Details</a>
                                         </div>
                                     </div>
