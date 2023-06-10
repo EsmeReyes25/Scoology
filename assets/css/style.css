@@ -98,3 +98,12 @@ a.sidebar-link {
     display: block;
     font-size: 1.5rem;
 }
+
+/* Calendar */
+.calendar-day, .calendar-day-head{
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.calendar-day-head{
+    background: #ddd;
+}
