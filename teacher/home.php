@@ -44,38 +44,53 @@ $result_courses = $stmt->fetchAll();
 </head>
 
 <body>
-    <div class="container">
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
         <div class="row">
-            <?php if (!empty($teacher)) : ?>
-                <div class="card bg-primary d-flex align-items-center my-3">
-                    <div class="card-body">
-                        <h1>Welcome <?= $teacher['teacher_name']; ?></h1>
-                    </div>
-                </div>
-                <h2>Your courses</h2>
-            <?php endif; ?>
+            <div class="col-12">
+                <!-- Incluir la barra de navegación -->
+                <?php include '../partials/header.php'; ?>
+            </div>
         </div>
-        <div class="container d-flex flex-wrap justify-content-between">
-            <?php foreach ($result_courses as $course) : ?>
-                <div class="card mb-3" style="width: 45%;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="..." class="img-fluid rounded-start" alt="">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $course['name'] ?></h5>
-                                <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
-                                <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary mx-3">View participants</a>
-                                <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Details</a>
+        <div class="row">
+            <!-- Incluir la barra lateral -->
+            <?php include '../partials/teacher-sidebar.html'; ?>
+            <div class="col-8">
+                <!-- Contenido principal -->
+                <div class="container">
+                    <div class="row">
+                        <?php if (!empty($teacher)) : ?>
+                            <div class="card bg-primary d-flex align-items-center my-3">
+                                <div class="card-body">
+                                    <h1>Welcome <?= $teacher['teacher_name']; ?></h1>
+                                </div>
                             </div>
-                        </div>
+                            <h2>Your courses</h2>
+                        <?php endif; ?>
+                    </div>
+                    <div class="container d-flex flex-wrap justify-content-between">
+                        <?php foreach ($result_courses as $course) : ?>
+                            <div class="card mb-3" style="width: 45%;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="..." class="img-fluid rounded-start" alt="">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $course['name'] ?></h5>
+                                            <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
+                                            <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary mx-3">View participants</a>
+                                            <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
-            <?php endforeach ?>
+            </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

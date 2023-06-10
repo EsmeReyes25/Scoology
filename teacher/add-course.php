@@ -48,33 +48,46 @@ if (!empty($_POST['name']) && !empty($_POST['description'])) {
 </head>
 
 <body>
-
-
-    <div class="container">
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
         <div class="row">
-            <form action="../teacher/add-course.php" method="post">
-                <div class="my-3">
-                    <label for="name" class="form-label">Name of the course</label>
-                    <input type="text" name="name" class="form-control w-50"  aria-describedby="courseHelp" required>
-                    <div id="courseHelp" class="form-text">Enter the name of the course</div>
-                </div>
+            <div class="col-12">
+                <!-- Incluir la barra de navegación -->
+                <?php include '../partials/header.php'; ?>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Incluir la barra lateral -->
+            <?php include '../partials/teacher-sidebar.html'; ?>
+            <div class="col-8">
+                <!-- Contenido principal -->
+                <div class="container">
+                    <div class="row">
+                        <form action="../teacher/add-course.php" method="post">
+                            <div class="my-3">
+                                <label for="name" class="form-label">Name of the course</label>
+                                <input type="text" name="name" class="form-control w-50" aria-describedby="courseHelp" required>
+                                <div id="courseHelp" class="form-text">Enter the name of the course</div>
+                            </div>
 
-                <div class="my-3">
-                    <label for="description" class="form-label">Description</label>
-                    <input type="text" name="description" class="form-control w-50" aria-describedby="descriptionHelp" required>
-                    <div id="descriptionHelp" class="form-text">Enter a brief description of the course</div>
-                </div>
+                            <div class="my-3">
+                                <label for="description" class="form-label">Description</label>
+                                <input type="text" name="description" class="form-control w-50" aria-describedby="descriptionHelp" required>
+                                <div id="descriptionHelp" class="form-text">Enter a brief description of the course</div>
+                            </div>
 
-                <div class="my-3">
-                    <label for="prerequisites" class="form-label">Prerequisites (optional)</label>
-                    <input type="text" name="prerequisites" class="form-control w-50" aria-describedby="prerequisitesHelp">
-                    <div id="prerequisitesHelp" class="form-text">Enter the prerequisites of the course</div>
+                            <div class="my-3">
+                                <label for="prerequisites" class="form-label">Prerequisites (optional)</label>
+                                <input type="text" name="prerequisites" class="form-control w-50" aria-describedby="prerequisitesHelp">
+                                <div id="prerequisitesHelp" class="form-text">Enter the prerequisites of the course</div>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Add course">
+                        </form>
+                    </div>
                 </div>
-                <input type="submit" class="btn btn-primary" value="Add course">
-            </form>
+            </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

@@ -54,36 +54,51 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title><?php echo $course['name'] ?></title>
 </head>
-
 <body class="body-index">
-    <div class="container border border-danger w-75 my-5 rounded">
-        <div class="row align-items-stretch">
-            <div class="col bg d-lg-block"></div>
-            <!-- <div class="col"> -->
-            <div class="col bg-light p-5 d-flex flex-column justify-content-center">
-                <h2 class="d-flex justify-content-center"><?php echo $course['name'] ?></h2>
-                <h5>Teacher: <?php echo $course['teacher'] ?></h5>
-                <br>
-                <h4>About this course</h4>
-                <p style="text-align: justify;"><?php echo $course['description'] ?></p>
-                <br>
-                <h4>Prerequisites</h4>
-                <?php if (empty($prerequisites)): ?>
-                    <p>No needed prerequisites</p>
-                <?php else: ?>
-                    <p><?php echo $course['prereq'] ?></p>
-                <?php endif; ?>
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Incluir la barra de navegación -->
+                <?php include '../partials/header.php'; ?>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Incluir la barra lateral -->
+            <?php include '../partials/student-sidebar.html'; ?>
+            <div class="col-8">
+                <!-- Contenido principal -->
+                <div class="container border border-danger w-75 my-5 rounded">
+                    <div class="row align-items-stretch">
+                        <div class="col bg d-lg-block"></div>
+                        <!-- <div class="col"> -->
+                        <div class="col bg-light p-5 d-flex flex-column justify-content-center">
+                            <h2 class="d-flex justify-content-center"><?php echo $course['name'] ?></h2>
+                            <h5>Teacher: <?php echo $course['teacher'] ?></h5>
+                            <br>
+                            <h4>About this course</h4>
+                            <p style="text-align: justify;"><?php echo $course['description'] ?></p>
+                            <br>
+                            <h4>Prerequisites</h4>
+                            <?php if (empty($prerequisites)) : ?>
+                                <p>No needed prerequisites</p>
+                            <?php else : ?>
+                                <p><?php echo $course['prereq'] ?></p>
+                            <?php endif; ?>
 
-                <?php if ($register) : ?>
-                    <p>You are already enrolled in this course</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-outline-dark w-50">View participants</a>
+                            <?php if ($register) : ?>
+                                <p>You are already enrolled in this course</p>
+                                <div class="d-flex justify-content-center">
+                                    <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-outline-dark w-50">View participants</a>
+                                </div>
+                            <?php else : ?>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-outline-dark w-50" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                <?php else : ?>
-                    <div class="d-flex justify-content-center">
-                    <button class="btn btn-outline-dark w-50" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
-                    </div>
-                <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

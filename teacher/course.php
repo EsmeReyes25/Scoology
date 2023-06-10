@@ -38,26 +38,42 @@ if ($result) {
 </head>
 
 <body>
-    <div class="container border border-danger w-75 my-5 rounded">
-        <div class="row align-items-stretch">
-            <div class="col bg d-lg-block"></div>
-            <!-- <div class="col"> -->
-            <div class="col bg-light p-5 d-flex flex-column justify-content-center">
-                <h2 class="d-flex justify-content-center"><?php echo $course['name'] ?></h2>
-                <h4>About this course</h4>
-                <p style="text-align: justify;"><?php echo $course['description'] ?></p>
-                <br>
-                <h4>Prerequisites</h4>
-                <?php if (empty($prerequisites)): ?>
-                    <p>No needed prerequisites</p>
-                <?php else: ?>
-                    <p><?php echo $course['prereq'] ?></p>
-                <?php endif; ?>
-                <h6>Students enrolled: <?php echo $course['students'] ?></h6>
-                <br><br>
-                <div class="d-flex justify-content-evenly">
-                    <button class="btn btn-primary" style="width:35%" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">Edit</button>
-                    <button class="btn btn-danger" style="width:35%" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+    <!-- Incluir la barra de navegación y la barra lateral -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Incluir la barra de navegación -->
+                <?php include '../partials/header.php'; ?>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Incluir la barra lateral -->
+            <?php include '../partials/teacher-sidebar.html'; ?>
+            <div class="col-8">
+                <!-- Contenido principal -->
+                <div class="container border border-danger w-75 my-5 rounded">
+                    <div class="row align-items-stretch">
+                        <div class="col bg d-lg-block"></div>
+                        <!-- <div class="col"> -->
+                        <div class="col bg-light p-5 d-flex flex-column justify-content-center">
+                            <h2 class="d-flex justify-content-center"><?php echo $course['name'] ?></h2>
+                            <h4>About this course</h4>
+                            <p style="text-align: justify;"><?php echo $course['description'] ?></p>
+                            <br>
+                            <h4>Prerequisites</h4>
+                            <?php if (empty($prerequisites)) : ?>
+                                <p>No needed prerequisites</p>
+                            <?php else : ?>
+                                <p><?php echo $course['prereq'] ?></p>
+                            <?php endif; ?>
+                            <h6>Students enrolled: <?php echo $course['students'] ?></h6>
+                            <br><br>
+                            <div class="d-flex justify-content-evenly">
+                                <button class="btn btn-primary" style="width:35%" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">Edit</button>
+                                <button class="btn btn-danger" style="width:35%" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
