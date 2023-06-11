@@ -41,6 +41,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,21 +65,21 @@
             <div class="col-8 offset-3" style="margin-top:20px">
                 <!-- Contenido principal -->
                 <div class="container">
-                    <div class="row">
+                    <div class="row" style="margin-left: 150px">
                         <form action="../teacher/edit.php?id=<?php echo $course_id ?>" method="post">
                         <div class="my-3">
-                            <label for="name" class="form-label">Name of the course</label>
-                            <input type="text" name="name" value="<?php echo $course['name'] ?>" class="form-control w-50" aria-describedby="courseHelp" required>
-                            <div id="courseHelp" class="form-text">Enter the name of the course</div>
+                            <label for="name" class="form-label" style="font-size: 25px;">Name of the course</label>
+                            <input type="text" name="name" value="<?php echo $course['name'] ?>" class="form-control w-75" aria-describedby="courseHelp" required>
+                            <div id="courseHelp" class="form-text" style="margin-bottom:25px">Enter the name of the course</div>
                         </div>
                         <div class="my-3">
-                            <label for="description" class="form-label">Description</label>
-                            <input type="text" name="description" value="<?php echo $course['description'] ?>" class="form-control w-50" aria-describedby="courseHelp" required>
-                            <div id="courseHelp" class="form-text">Enter a brief description of the course</div>
+                            <label for="description" class="form-label" style="font-size: 25px;">Description</label>
+                            <textarea type="text" name="description" class="form-control w-75" aria-describedby="courseHelp" required><?php echo $course['description'] ?></textarea>
+                            <div id="courseHelp" class="form-text" style="margin-bottom:25px">Enter a brief description of the course</div>
                         </div>
                         <div class="my-3">
-                            <label for="prerequisites" class="form-label">Prerequisites (optional)</label>
-                            <input type="text" name="prerequisites" value="<?php echo $course['prereq'] ?>" class="form-control w-50" aria-describedby="courseHelp" required>
+                            <label for="prerequisites" class="form-label" style="font-size: 25px;">Prerequisites (optional)</label>
+                            <input type="text" name="prerequisites" value="<?php echo $course['prereq'] ?>" class="form-control w-75" aria-describedby="courseHelp" required>
                             <div id="courseHelp" class="form-text">Enter the prerequisites of the course</div>
                         </div>
                             <input type="submit" class="btn btn-primary" value="Save">
@@ -96,4 +97,4 @@
     body {
         font-family: 'Poppins', sans-serif;
     }
-</style>s
+</style>

@@ -1,36 +1,38 @@
-<?php 
-    session_start();
-    require 'connection.php';
-    if (isset($_SESSION['student_id'])) {
-        $query = "SELECT * FROM students WHERE student_id = :id";
-        $registro = $conn->prepare($query);
-        $registro->bindParam(':id', $_SESSION['student_id']);
-        $registro->execute();
-        $resultado = $registro->fetch(PDO::FETCH_ASSOC);
-        $student = null;
-        if(count($resultado) > 0){
-            $student = $resultado;
-        }
-    } else if (isset($_SESSION['teacher_id'])) {
-        $query = "SELECT * FROM teachers WHERE teacher_id = :id";
-        $registro = $conn->prepare($query);
-        $registro->bindParam(':id', $_SESSION['teacher_id']);
-        $registro->execute();
-        $resultado = $registro->fetch(PDO::FETCH_ASSOC);
-        $teacher = null;
-        if(count($resultado) > 0){
-            $teacher = $resultado;
-        }
+<?php
+session_start();
+require 'connection.php';
+if (isset($_SESSION['student_id'])) {
+    $query = "SELECT * FROM students WHERE student_id = :id";
+    $registro = $conn->prepare($query);
+    $registro->bindParam(':id', $_SESSION['student_id']);
+    $registro->execute();
+    $resultado = $registro->fetch(PDO::FETCH_ASSOC);
+    $student = null;
+    if (count($resultado) > 0) {
+        $student = $resultado;
     }
+} else if (isset($_SESSION['teacher_id'])) {
+    $query = "SELECT * FROM teachers WHERE teacher_id = :id";
+    $registro = $conn->prepare($query);
+    $registro->bindParam(':id', $_SESSION['teacher_id']);
+    $registro->execute();
+    $resultado = $registro->fetch(PDO::FETCH_ASSOC);
+    $teacher = null;
+    if (count($resultado) > 0) {
+        $teacher = $resultado;
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="icon" href="./assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,41 +40,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Welcome to Scoology</title>
 </head>
+
 <body class="body-index">
-    <div class="container border border-danger w-75 my-5 rounded">
+    <div class="container w-75 my-5 rounded">
         <div class="row align-items-stretch">
-            <div class="col bg d-lg-block"></div>
+            <div class="col bg d-lg-block">
+            </div>
             <!-- <div class="col"> -->
             <div class="col bg-light p-5 d-flex justify-content-center">
                 <div class="text-center my-2">
-                    <?php if(!empty($student)): ?>
-                        <div class="row">
+                    <?php if (!empty($student)) : ?>
+
+                        <div class="row" style="width: 20rem; height: 15rem">
+
                             <h3>Welcome <?= $student['student_name']; ?></h3>
-                            <p class=" my-4">You are succesfully logged in!</p>
+                            <p class="my-4">You are succesfully logged in!</p>
                             <div>
-                                <a href="student/home.php" class="btn btn-outline-dark mx-2" style="width:35%" role="button">Home</a>
-                                <a href="logout.php" class="btn btn-outline-dark mx-2" style="width:35%">Logout</a>
-                            </div>
-                        </div> 
-                    <?php elseif(!empty($teacher)): ?>
-                        <div class="card" style="width: 20rem; height: 15rem">
-                            <div class="card-body">
-                                <h5 class="card-title">Welcome <?= $teacher['teacher_name']; ?></h5>
-                                <p class="card-text my-5">You are succesfully logged in!</p>
-                                <a href="teacher/home.php" class="btn btn-primary mx-2" role="button">Home</a>
-                                <a href="logout.php" class="btn btn-primary mx-2">Logout</a>
+                                <a href="student/home.php" class="btn btn-color mx-2" style="width:35%" role="button">Home</a>
+                                <a href="logout.php" class="btn btn-color mx-2" style="width:35%">Logout</a>
                             </div>
                         </div>
-                    <?php else: ?>
-                        <div class="row">
+                    <?php elseif (!empty($teacher)) : ?>
+                        <div class="row" style="width: 20rem; height: 15rem">
+                            <h5 class="card-title">Welcome <?= $teacher['teacher_name']; ?></h5>
+                            <p class="card-text my-5">You are succesfully logged in!</p>
+                            <div>
+                                <a href="teacher/home.php" class="btn btn-color mx-2" style="width:35%" role="button">Home</a>
+                                <a href="logout.php" class="btn btn-color mx-2" style="width:35%">Logout</a>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="row d-flex justify-content-center">
                             <h1>Start learning</h1>
-                            <a href="login.php" class="btn btn-index" style="margin-bottom: 6px;">
+                            <a href="login.php" role="button" class="btn btn-index w-50" style="margin-bottom: 6px;">
                                 <h3>Login</h3>
                             </a>
                         </div>
-                        <div class="row">
+                        <div class="row d-flex justify-content-center" style="margin-top: 25px">
                             <h5>Don't have an account?</h5>
-                            <a href="signup.php" class="btn btn-index" style="margin-top: 0;">Sign up</a>
+                            <a href="signup.php" class="btn w-50" style="margin-top: 0; padding: 0; text-decoration: underline;">Sign up</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -81,34 +87,50 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>
 
 <style>
-  .bg {
-    background-image: url(./assets/images/light-clouds-background.png);
-    background-position: center center;
-  }
+    .bg {
+        background-image: url(./assets/images/index-card.png);
+        background-position: center center;
+        background-size: contain;
+    }
 
-  .body-index {
-    height: 100vh;
-    width: 100vw;
-    background-size: cover;
-    background-attachment: fixed;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url(./assets/images/principal.png);
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-  }
+    .body-index {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-attachment: fixed;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: url(./assets/images/background-img.png);
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        background-position: center center;
+    }
 
-  i {
-    font-size: 1.5rem;
-    padding: .625rem 1.625rem;
-  }
+    i {
+        font-size: 1.5rem;
+        padding: .625rem 1.625rem;
+    }
 
-  a{
-    text-decoration: none;
-  }
+    .btn-index {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 7px 7px 7px;
+        background-color: #288be4;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        text-align: center;
+        border-width: 0.5px;
+        border-style: outset;
+        height: 55px;
+        width: 25%;
+        margin: 7px;
+    }
 </style>

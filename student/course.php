@@ -52,6 +52,7 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/images/icon.png">
     <title><?php echo $course['name'] ?></title>
 </head>
 <!-- <body class="body-index"> -->
@@ -72,9 +73,9 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="col-8 offset-3">
                 <!-- Contenido principal -->
-                <div class="container border border-danger w-100 my-5 rounded">
+                <div class="container border border-light w-100 my-5 rounded">
                     <div class="row align-items-stretch">
-                        <div class="col bg d-lg-block"></div>
+                        <div class="col course-img d-lg-block"></div>
                         <!-- <div class="col"> -->
                         <div class="col bg-light p-5 d-flex flex-column justify-content-center">
                             <h2 class="d-flex justify-content-center"><?php echo $course['name'] ?></h2>
@@ -93,11 +94,11 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
                             <?php if ($register) : ?>
                                 <p>You are already enrolled in this course</p>
                                 <div class="d-flex justify-content-center">
-                                    <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-outline-dark w-50">View participants</a>
+                                    <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-color w-50">View participants</a>
                                 </div>
                             <?php else : ?>
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-outline-dark w-50" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
+                                    <button class="btn btn-color w-50" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enroll</button>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -135,8 +136,8 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
         font-family: 'Poppins', sans-serif;
     }
 
-        .bg {
-        background-image: url(./assets/images/light-clouds-background.png);
+        .course-img {
+        background-image: url(../assets/images/course2.jpg);
         background-position: center center;
     }
 </style>

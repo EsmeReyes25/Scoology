@@ -39,7 +39,7 @@
   <div class="main">
     <nav class="d-flex bg-light justify-content-between navbar navbar-expand px-3 border-bottom fixed-top">
       <div>
-        <button class="btn" type="button">
+        <button class="btn bg-light" type="button">
           <i class="fa-solid fa-bars lead"></i>
         </button>
       </div>
@@ -56,13 +56,13 @@
       </div>
       <div class="d-flex align-items-center" style="margin-right: 40px">
         <div>
-          <i class="fa-solid fa-message fa-shake"></i>
+          <i class="fa-solid fa-message fa-shake" style="padding: .625rem 1.625rem"></i>
         </div>
         <div>
-          <i class="fa-solid fa-bell fa-shake"></i>
+          <i class="fa-solid fa-bell fa-shake" style="padding: .625rem 1.625rem"></i>
         </div>
         <div class="dropdown user-drop">
-          <i class="user-icon nav-link fa-solid fa-user dropdown-toggle" id="navbarDropdown" role="button" aria-expanded="false"></i>
+          <i class="user-icon nav-link fa-solid fa-user dropdown-toggle" style="padding: .625rem 1.625rem" id="navbarDropdown" role="button" aria-expanded="false"></i>
           <ul class="drop-menu hide" aria-labelledby="navbarDropdown">
             <li><a class="menu-option dropdown-item" href="../edit-profile.php">Edit profile</a></li>
             <li>

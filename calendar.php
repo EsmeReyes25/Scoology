@@ -34,6 +34,7 @@ if (isset($_SESSION['student_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,7 +65,7 @@ if (isset($_SESSION['student_id'])) {
             <div class="col-8 my-3">
                 <!-- Contenido principal -->
                 <div class="container">
-                    <div class="row d-flex flex-wrap justify-content-center">
+                    <div class="row d-flex flex-wrap justify-content-center" style="color: #288be4;">
                         <i id="prevMonthBtn" class="fa-solid fa-chevron-left" style="width: 5%;"></i>
                         <h1 id="currentMonthYear"></h1>
                         <i id="nextMonthBtn" class="fa-solid fa-chevron-right" style="width: 5%;"></i>

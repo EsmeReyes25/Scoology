@@ -36,6 +36,7 @@ $result_courses = $stmt->fetchAll();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,9 +63,9 @@ $result_courses = $stmt->fetchAll();
                 <div class="container">
                     <div class="row">
                         <?php if (!empty($teacher)) : ?>
-                            <div class="card bg-primary d-flex align-items-center my-3">
-                                <div class="card-body">
-                                    <h1>Welcome <?= $teacher['teacher_name']; ?></h1>
+                            <div class="d-flex align-items-center my-3">
+                                <div class="alert alert-primary my-3 w-100 d-flex justify-content-center" role="alert">
+                                    <h1>Welcome <?= $teacher['teacher_name']; ?> </h1>
                                 </div>
                             </div>
                             <h2>Your courses</h2>
@@ -75,14 +76,14 @@ $result_courses = $stmt->fetchAll();
                             <div class="card mb-2" style="width: 48%;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="..." class="img-fluid rounded-start" alt="">
+                                        <img src="../assets/images/course1.png" class="img-fluid rounded-start" alt="">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $course['name'] ?></h5>
                                             <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
-                                            <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View participants</a>
-                                            <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">Details</a>
+                                            <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-color">View participants</a>
+                                            <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-color">Details</a>
                                         </div>
                                     </div>
                                 </div>

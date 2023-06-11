@@ -8,6 +8,22 @@
     align-items: center;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Botones */
+.btn-color {
+    background-color: #288be4;
+    color: #fff;
+}
+
+/* Imagenes de cursos(detalles) */
+.course-img {
+    background-image: url(../images/course2.jpg);
+    background-position: center center;
+}
+
 /* Header */
 a{
     text-decoration: none;
@@ -36,7 +52,7 @@ li{
 
 i{
     font-size: 1.5rem;
-    padding: .625rem 1.625rem;
+    padding: .625rem;
 }
 
 i:hover{
@@ -131,7 +147,7 @@ a.sidebar-link {
     text-align: center;    
     border-width: 0.5px;
     border-style: outset;
-    height: 30px;
+    height: 55px;
     width: 25%;
     margin: 7px;
 }

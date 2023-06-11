@@ -31,15 +31,16 @@ $query = "SELECT courses.course_name AS 'course_name',
                     students.student_email AS 'email',
                     students.student_age AS age,
                     register.reg_date AS 'reg_date'
-                FROM students
-                INNER JOIN register
-                    ON register.reg_student_id = students.student_id
-                INNER JOIN courses
-                    ON courses.course_id = register.reg_course_id
+                FROM courses
                 INNER JOIN teachers
                     ON courses.course_teach_id = teachers.teacher_id
+                LEFT JOIN register
+                    ON courses.course_id = register.reg_course_id
+                LEFT JOIN students
+                    ON register.reg_student_id = students.student_id
                 WHERE courses.course_id = $course_id
                 ORDER BY students.student_name";
+                
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $result = $stmt->fetchAll();
@@ -53,6 +54,7 @@ $result = $stmt->fetchAll();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,10 +82,13 @@ $result = $stmt->fetchAll();
             </div>
             <div class="col-8 offset-3" style="margin-top: 30px;">
                 <!-- Contenido principal -->
-                <h2><?php echo $result[0]['course_name'] ?></h2>
-                <h5>Teacher: <?php echo $result[0]['teacher'] ?></h5>
+                <div class="alert alert-primary my-2 w-100 d-flex justify-content-center" role="alert">
+                    <h2><?php echo $result[0]['course_name'] ?></h2>
+                </div>
+                <h5 class="d-flex justify-content-center">Teacher: <?php echo $result[0]['teacher'] ?></h5>
                 <br>
-                <h5>Students enrolled in this course</h5>
+                <h3>Students enrolled in this course:</h3>
+                <br>
                 <table class="table table-striped">
                     <thead>
                         <tr>
