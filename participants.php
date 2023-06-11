@@ -40,7 +40,7 @@ $query = "SELECT courses.course_name AS 'course_name',
                     ON register.reg_student_id = students.student_id
                 WHERE courses.course_id = $course_id
                 ORDER BY students.student_name";
-                
+
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $result = $stmt->fetchAll();
@@ -116,9 +116,3 @@ $result = $stmt->fetchAll();
 </body>
 
 </html>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-</style>

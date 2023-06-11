@@ -155,34 +155,3 @@ if (!empty($_POST['name']) && !empty($_POST['lastname']) && !empty($_POST['age']
 </body>
 
 </html>
-<style>
-    .bg {
-        background-image: url(./assets/images/index-card-sign.png);
-        background-position: center center;
-        background-size: cover;
-    }
-
-    .body-index {
-        height: 100vh;
-        width: 100vw;
-        background-size: cover;
-        background-attachment: fixed;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-image: url(./assets/images/background-img.png);
-        justify-content: center;
-        font-family: 'Poppins', sans-serif;
-        background-position: center center;
-    }
-
-    i {
-        font-size: 1.5rem;
-        padding: .625rem 1.625rem;
-    }
-
-    a {
-        text-decoration: underline;
-    }
-</style>

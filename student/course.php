@@ -130,14 +130,3 @@ $register = $stmt->fetch(PDO::FETCH_ASSOC);
 </body>
 
 </html>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-
-        .course-img {
-        background-image: url(../assets/images/course2.jpg);
-        background-position: center center;
-    }
-</style>

@@ -95,9 +95,3 @@ if (!empty($_POST['name']) && !empty($_POST['description'])) {
 </body>
 
 </html>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-</style>

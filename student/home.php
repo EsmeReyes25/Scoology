@@ -97,9 +97,3 @@ $resultado_courses = $prep->fetchAll();
 </body>
 
 </html>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-</style>
