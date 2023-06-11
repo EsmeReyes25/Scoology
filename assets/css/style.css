@@ -36,6 +36,12 @@ body {
     background-size: contain;
 }
 
+.bg-sign {
+    background-image: url(../images/index-card-sign.png);
+    background-position: center center;
+    background-size: cover;
+}
+
 /* Header */
 a{
     text-decoration: none;

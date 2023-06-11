@@ -106,7 +106,7 @@ if (!empty($_POST['name']) && !empty($_POST['lastname']) && !empty($_POST['age']
     <?php endif; ?>
     <div class="container w-75 rounded">
         <div class="row align-items-stretch">
-            <div class="col bg d-lg-block">
+            <div class="col bg-sign d-lg-block">
             </div>
             <!-- <div class="col"> -->
             <div class="col bg-light px-5" style="padding-top: 25px">
