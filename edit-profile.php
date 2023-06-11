@@ -1,62 +1,62 @@
-<?php 
-    session_start();
-    require 'connection.php';
-    if (isset($_SESSION['student_id'])) {
-        $query = "SELECT * FROM students WHERE student_id = :id";
-        $registro = $conn->prepare($query);
-        $registro->bindParam(':id', $_SESSION['student_id']);
-        $registro->execute();
-        $resultado = $registro->fetch(PDO::FETCH_ASSOC);
-        $student = null;
-        if(count($resultado) > 0){
-            $student = $resultado;
-            $student_id = $student['student_id'];
+<?php
+session_start();
+require 'connection.php';
+if (isset($_SESSION['student_id'])) {
+    $query = "SELECT * FROM students WHERE student_id = :id";
+    $registro = $conn->prepare($query);
+    $registro->bindParam(':id', $_SESSION['student_id']);
+    $registro->execute();
+    $resultado = $registro->fetch(PDO::FETCH_ASSOC);
+    $student = null;
+    if (count($resultado) > 0) {
+        $student = $resultado;
+        $student_id = $student['student_id'];
+    }
+} else if (isset($_SESSION['teacher_id'])) {
+    $query = "SELECT * FROM teachers WHERE teacher_id = :id";
+    $registro = $conn->prepare($query);
+    $registro->bindParam(':id', $_SESSION['teacher_id']);
+    $registro->execute();
+    $resultado = $registro->fetch(PDO::FETCH_ASSOC);
+    $teacher = null;
+    if (count($resultado) > 0) {
+        $teacher = $resultado;
+        $teacher_id = $teacher['teacher_id'];
+    }
+}
+
+$message_s = '';
+$message_e = '';
+if (!empty($_POST['name']) && !empty($_POST['lastname'])) {
+    if (!empty($student)) {
+        $sql = "UPDATE students SET student_name = :name, student_lastname = :lastname, student_age = :age WHERE student_id = $student_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $_POST['name']);
+        $stmt->bindParam(':lastname', $_POST['lastname']);
+        $stmt->bindParam(':age', $_POST['age']);
+
+        if ($stmt->execute()) {
+            $message_e = '';
+            $message_s = 'Data updated successfully';
+        } else {
+            $message_s = '';
+            $message_e = 'Something went wrong';
         }
-    } else if (isset($_SESSION['teacher_id'])) {
-        $query = "SELECT * FROM teachers WHERE teacher_id = :id";
-        $registro = $conn->prepare($query);
-        $registro->bindParam(':id', $_SESSION['teacher_id']);
-        $registro->execute();
-        $resultado = $registro->fetch(PDO::FETCH_ASSOC);
-        $teacher = null;
-        if(count($resultado) > 0){
-            $teacher = $resultado;
-            $teacher_id = $teacher['teacher_id'];
+    } else if (!empty($teacher)) {
+        $sql = "UPDATE teachers SET teacher_name = :name, teacher_lastname = :lastname WHERE teacher_id = $teacher_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $_POST['name']);
+        $stmt->bindParam(':lastname', $_POST['lastname']);
+
+        if ($stmt->execute()) {
+            $message_e = '';
+            $message_s = 'Data updated successfully';
+        } else {
+            $message_s = '';
+            $message_e = 'Something went wrong';
         }
     }
-
-    $message_s = '';
-    $message_e = '';
-    if (!empty($_POST['name']) && !empty($_POST['lastname'])) {
-        if (!empty($student)) {
-            $sql = "UPDATE students SET student_name = :name, student_lastname = :lastname, student_age = :age WHERE student_id = $student_id";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':name', $_POST['name']);
-            $stmt->bindParam(':lastname', $_POST['lastname']);
-            $stmt->bindParam(':age', $_POST['age']);
-
-            if ($stmt->execute()) {
-                $message_e = '';
-                $message_s = 'Data updated successfully';
-            } else {
-                $message_s = '';
-                $message_e = 'Something went wrong';
-            }
-        } else if (!empty($teacher)) {
-            $sql = "UPDATE teachers SET teacher_name = :name, teacher_lastname = :lastname WHERE teacher_id = $teacher_id";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':name', $_POST['name']);
-            $stmt->bindParam(':lastname', $_POST['lastname']);
-
-            if ($stmt->execute()) {
-                $message_e = '';
-                $message_s = 'Data updated successfully';
-            } else {
-                $message_s = '';
-                $message_e = 'Something went wrong';
-            }
-        }
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +75,7 @@
     <title>Edit Profile</title>
 </head>
 
-<body class="body-index">
+<body>
     <!-- Incluir la barra de navegación y la barra lateral -->
     <div class="container-fluid">
         <div class="row">
@@ -84,16 +84,18 @@
                 <?php include 'partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
-            <!-- Incluir la barra lateral -->
-            <?php if (!empty($student)) : ?>
-                <?php include 'partials/student-sidebar.html'; ?>
-            <?php elseif (!empty($teacher)) : ?>
-                <?php include 'partials/teacher-sidebar.html'; ?>
-            <?php endif; ?>
-            <div class="col-8">
+        <div class="row" style="margin-top: 105px">
+            <div class="col-3 position-fixed">
+                <!-- Incluir la barra lateral -->
+                <?php if (!empty($student)) : ?>
+                    <?php include 'partials/student-sidebar.html'; ?>
+                <?php elseif (!empty($teacher)) : ?>
+                    <?php include 'partials/teacher-sidebar.html'; ?>
+                <?php endif; ?>
+            </div>
+            <div class="col-8 offset-3" style="margin-top: 50px">
                 <!-- Contenido principal -->
-                <?php if (!empty($message_e)): ?>
+                <?php if (!empty($message_e)) : ?>
                     <div class="row w-100">
                         <div class="col-12">
                             <div class="d-flex justify-content-center">
@@ -109,58 +111,67 @@
                         </div>
                     </div>
                 <?php endif; ?>
-                <?php if (!empty($message_s)): ?>
+                <?php if (!empty($message_s)) : ?>
                     <div class="row w-100">
                         <div class="col-12">
                             <div class="d-flex justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                                     </symbol>
                                 </svg>
-                                <div class="alert alert-success d-flex align-items-center" role="alert">
-                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                <div class="alert alert-success d-flex align-items-center w-75" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                                        <use xlink:href="#check-circle-fill" />
+                                    </svg>
                                     <div>
-                                        <?=$message_s; ?>
+                                        <?= $message_s; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 <?php endif; ?>
-                <div class="container w-75 rounded">
-                    <div class="row align-items-stretch">
-                        <div class="col bg d-lg-block"></div>
-                        <div class="col bg-light px-5" style="padding-top: 25px">
-                            <?php if(!empty($student)): ?>
-                                <form action="edit-profile.php" method="post">
-                                    <div class="mb-2 d-flex align-items-center">
-                                        <input class="form-control" type="text" name="name" value="<?php echo $student['student_name']?>" placeholder="Enter your name" required>
-                                    </div>
-                                    <div class="mb-2 d-flex align-items-center">
-                                        <input class="form-control" type="text" name="lastname" value="<?php echo $student['student_lastname']?>" placeholder="Enter your lastname" required>
-                                    </div>
-                                    <div class="mb-2 d-flex align-items-center">
-                                        <input class="form-control" type="number" name="age" value="<?php echo $student['student_age']?>" placeholder="Enter your age" required>
-                                    </div>
-                                    <div class="row d-flex justify-content-center" style="margin-top: 23px">
-                                        <input type="submit" class="btn btn-outline-dark w-50" value="Save">
-                                    </div>
-                                </form>
-                            <?php elseif(!empty($teacher)): ?>
-                                <form action="edit-profile.php" method="post">
-                                    <div class="mb-2 d-flex align-items-center">
-                                        <input class="form-control" type="text" name="name" value="<?php echo $teacher['teacher_name']?>" placeholder="Enter your name" required>
-                                    </div>
-                                    <div class="mb-2 d-flex align-items-center">
-                                        <input class="form-control" type="text" name="lastname" value="<?php echo $teacher['teacher_lastname']?>" placeholder="Enter your lastname" required>
-                                    </div>
-                                    <div class="row d-flex justify-content-center" style="margin-top: 23px">
-                                        <input type="submit" class="btn btn-outline-dark w-50" value="Save">
-                                    </div>
-                                </form>
-                            <?php endif; ?>
-                        </div>
+                <div class="container w-75">
+                    <div class="row">
+                        <?php if (!empty($student)) : ?>
+                            <form action="edit-profile.php" method="post">
+                                <div class="my-3">
+                                    <label for="name" class="form-label" style="font-size: 25px;">Name</label>
+                                    <input type="text" name="name" value="<?php echo $student['student_name'] ?>" class="form-control w-100" aria-describedby="nameHelp" required>
+                                    <div id="nameHelp" class="form-text" style="margin-bottom:25px">Enter your name</div>
+                                </div>
+                                <div class="my-3">
+                                    <label for="name" class="form-label" style="font-size: 25px;">Lastname</label>
+                                    <input type="text" name="lastname" value="<?php echo $student['student_lastname'] ?>" class="form-control w-100" aria-describedby="lastnameHelp" required>
+                                    <div id="lastnameHelp" class="form-text" style="margin-bottom:25px">Enter your lastname</div>
+                                </div>
+
+                                <div class="my-3">
+                                    <label for="age" class="form-label" style="font-size: 25px;">Age</label>
+                                    <input class="form-control" type="number" name="age" value="<?php echo $student['student_age'] ?>" placeholder="Enter your age" required>
+                                </div>
+                                <div class="row d-flex justify-content-center" style="margin-top: 23px">
+                                    <input type="submit" class="btn btn-color w-25" value="Save">
+                                </div>
+                            </form>
+                        <?php elseif (!empty($teacher)) : ?>
+                            <form action="edit-profile.php" method="post">
+                                <div class="my-3">
+                                    <label for="name" class="form-label" style="font-size: 25px;">Name</label>
+                                    <input type="text" name="name" value="<?php echo $teacher['teacher_name'] ?>" class="form-control w-100" aria-describedby="nameHelp" required>
+                                    <div id="nameHelp" class="form-text" style="margin-bottom:25px">Enter your name</div>
+                                </div>
+                                <div class="my-3">
+                                    <label for="lastname" class="form-label" style="font-size: 25px;">Lastname</label>
+                                    <input type="text" name="lastname" value="<?php echo $teacher['teacher_lastname'] ?>" class="form-control w-100" aria-describedby="lastnameHelp" required>
+                                    <div id="lastnameHelp" class="form-text" style="margin-bottom:25px">Enter your lastname</div>
+                                </div>
+                                <div class="row d-flex justify-content-center" style="margin-top: 23px">
+                                    <input type="submit" class="btn btn-color w-25" value="Save">
+                                </div>
+                            </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -168,4 +179,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>
