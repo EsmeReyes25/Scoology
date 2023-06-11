@@ -83,7 +83,7 @@ $result_courses = $stmt->fetchAll();
                                             <h5 class="card-title"><?php echo $course['name'] ?></h5>
                                             <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
                                             <a href="../participants.php?id=<?php echo $course['course_id'] ?>" class="btn btn-color">View participants</a>
-                                            <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-color">Details</a>
+                                            <a href="../teacher/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-color my-2">Details</a>
                                         </div>
                                     </div>
                                 </div>

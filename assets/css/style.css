@@ -23,8 +23,6 @@ body {
     color: #fff;
 }
 
-
-
 /* Imagenes de cursos(detalles) */
 .course-img {
     background-image: url(../images/course2.jpg);
@@ -138,7 +136,7 @@ a.sidebar-link {
 }
 
 .calendar {
-    height: 490px;
+    height: 420px;
 }
 
 #currentMonthYear{

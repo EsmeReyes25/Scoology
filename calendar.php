@@ -43,7 +43,7 @@ if (isset($_SESSION['student_id'])) {
     <title>Calendar</title>
 </head>
 
-<body class="overflow-hidden">
+<body>
     <script type="module" src="js/calendar.js"></script>
     <!-- Incluir la barra de navegación y la barra lateral -->
     <div class="container-fluid">
@@ -55,14 +55,14 @@ if (isset($_SESSION['student_id'])) {
         </div>
         <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <div class="col-3">
+            <div class="col-3 position-fixed">
             <?php if (!empty($student)) : ?>
                 <?php include 'partials/student-sidebar.html'; ?>
             <?php elseif (!empty($teacher)) : ?>
                 <?php include 'partials/teacher-sidebar.html'; ?>
             <?php endif; ?>
             </div>
-            <div class="col-8 my-3">
+            <div class="col-8 my-3 offset-3">
                 <!-- Contenido principal -->
                 <div class="container">
                     <div class="row d-flex flex-wrap justify-content-center" style="color: #288be4;">
