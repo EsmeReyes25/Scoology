@@ -2,15 +2,15 @@
 session_start();
 require '../connection.php';
 if (isset($_SESSION['student_id'])) {
-  $query = "SELECT * FROM students WHERE student_id = :id";
-  $registro = $conn->prepare($query);
-  $registro->bindParam(':id', $_SESSION['student_id']);
-  $registro->execute();
-  $resultado = $registro->fetch(PDO::FETCH_ASSOC);
-  $student = null;
-  if (count($resultado) > 0) {
-    $student = $resultado;
-  }
+    $query = "SELECT * FROM students WHERE student_id = :id";
+    $registro = $conn->prepare($query);
+    $registro->bindParam(':id', $_SESSION['student_id']);
+    $registro->execute();
+    $resultado = $registro->fetch(PDO::FETCH_ASSOC);
+    $student = null;
+    if (count($resultado) > 0) {
+        $student = $resultado;
+    }
 }
 
 $query_courses = "SELECT courses.course_id AS 'course_id',
@@ -35,6 +35,7 @@ $resultado_courses = $prep->fetchAll();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,21 +47,23 @@ $resultado_courses = $prep->fetchAll();
     <!-- Incluir la barra de navegación y la barra lateral -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" ;>
                 <!-- Incluir la barra de navegación -->
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/student-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/student-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3">
                 <!-- Contenido principal -->
                 <div class="container">
                     <div class="row">
                         <?php if (!empty($student)) : ?>
-                            <div class="card bg-primary d-flex align-items-center my-3">
-                                <div class="card-body">
+                            <div class="d-flex align-items-center my-3">
+                                <div class="alert alert-primary my-3 w-100 d-flex justify-content-center" role="alert">
                                     <h1>Welcome <?= $student['student_name']; ?> </h1>
                                 </div>
                             </div>
@@ -72,14 +75,14 @@ $resultado_courses = $prep->fetchAll();
                             <div class="card mb-3" style="width: 45%;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="..." class="img-fluid rounded-start" alt="">
+                                        <img src="../assets/images/course1.png" class="img-fluid rounded-start" alt="">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $course['name'] ?></h5>
                                             <p class="card-text">Teacher: <?php echo $course['teacher'] ?></p>
                                             <p class="card-text"><small class="text-muted">Students enrolled: <?php echo $course['students'] ?></small></p>
-                                            <a href="../student/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-primary">View</a>
+                                            <a href="../student/course.php?id=<?php echo $course['course_id'] ?>" class="btn btn-color" style="background-color:#288be4">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -94,9 +97,3 @@ $resultado_courses = $prep->fetchAll();
 </body>
 
 </html>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-</style>

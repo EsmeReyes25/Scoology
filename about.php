@@ -10,6 +10,7 @@ if (isset($_SESSION['student_id'])) {
     $student = null;
     if (count($resultado) > 0) {
         $student = $resultado;
+        $student_id = $student['student_id'];
     }
 } else if (isset($_SESSION['teacher_id'])) {
     $query = "SELECT * FROM teachers WHERE teacher_id = :id";
@@ -20,30 +21,9 @@ if (isset($_SESSION['student_id'])) {
     $teacher = null;
     if (count($resultado) > 0) {
         $teacher = $resultado;
+        $teacher_id = $teacher['teacher_id'];
     }
 }
-
-$course_id = $_GET['id'];
-
-$query = "SELECT courses.course_name AS 'course_name',
-                    CONCAT(teachers.teacher_name, ' ', teachers.teacher_lastname) AS teacher,
-                    CONCAT(students.student_name, ' ', students.student_lastname) AS 'student_name',
-                    students.student_email AS 'email',
-                    students.student_age AS age,
-                    register.reg_date AS 'reg_date'
-                FROM courses
-                INNER JOIN teachers
-                    ON courses.course_teach_id = teachers.teacher_id
-                LEFT JOIN register
-                    ON courses.course_id = register.reg_course_id
-                LEFT JOIN students
-                    ON register.reg_student_id = students.student_id
-                WHERE courses.course_id = $course_id
-                ORDER BY students.student_name";
-
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$result = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +39,7 @@ $result = $stmt->fetchAll();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title><?php echo $result[0]['course_name'] ?></title>
+    <title>About</title>
 </head>
 
 <body>
@@ -72,43 +52,27 @@ $result = $stmt->fetchAll();
             </div>
         </div>
         <div class="row" style="margin-top: 105px">
-            <!-- Incluir la barra lateral -->
             <div class="col-3 position-fixed">
+                <!-- Incluir la barra lateral -->
                 <?php if (!empty($student)) : ?>
                     <?php include 'partials/student-sidebar.html'; ?>
                 <?php elseif (!empty($teacher)) : ?>
                     <?php include 'partials/teacher-sidebar.html'; ?>
                 <?php endif; ?>
             </div>
-            <div class="col-8 offset-3" style="margin-top: 30px;">
+            <div class="col-8 offset-3" style="margin-top:50px">
                 <!-- Contenido principal -->
-                <div class="alert alert-primary my-2 w-100 d-flex justify-content-center" role="alert">
-                    <h2><?php echo $result[0]['course_name'] ?></h2>
+                <div class="container">
+                    <h1>About us</h1>
+                    <p class="fs-5" style="text-align: justify;">Welcome to Scoology! Our compromise is to provide high-quality educational experiences to help you expand your knowledge and skills. 
+                        In this page, you will find detailed information about our courses and what makes them unique.</p>
+                    <p class="fs-5" style="text-align: justify;">Our courses are designed by industry experts and experienced instructors who are passionate about sharing their expertise with you. 
+                        Whether you're a beginner or an advanced learner, we have courses to suit your needs. From technical subjects like programming and data science 
+                        to creative fields like design and photography, our diverse range of courses caters to a wide range of interests.</p>
+                    <p class="fs-5" style="text-align: justify;">We believe in the power of collaboration and community. Throughout your learning journey, you'll have access to our vibrant student community, 
+                        where you can connect with fellow learners, share insights, and seek guidance. Our instructors are also available to provide support and answer any questions you may have.</p>
+                    <p class="fs-5" style="text-align: justify;">Invest in your personal and professional growth by enrolling in our courses. Start your learning journey today and unlock a world of possibilities!</p>
                 </div>
-                <h5 class="d-flex justify-content-center">Teacher: <?php echo $result[0]['teacher'] ?></h5>
-                <br>
-                <h3>Students enrolled in this course:</h3>
-                <br>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Student Name</th>
-                            <th>Email</th>
-                            <th>Age</th>
-                            <th>Registration date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($result as $student) : ?>
-                            <tr>
-                                <td><?php echo $student['student_name'] ?></td>
-                                <td><?php echo $student['email'] ?></td>
-                                <td><?php echo $student['age'] ?></td>
-                                <td><?php echo $student['reg_date'] ?></td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

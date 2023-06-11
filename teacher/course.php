@@ -30,6 +30,7 @@ if ($result) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,14 +47,16 @@ if ($result) {
                 <?php include '../partials/header.php'; ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 105px">
             <!-- Incluir la barra lateral -->
-            <?php include '../partials/teacher-sidebar.html'; ?>
-            <div class="col-8">
+            <div class="col-3 position-fixed">
+                <?php include '../partials/teacher-sidebar.html'; ?>
+            </div>
+            <div class="col-8 offset-3">
                 <!-- Contenido principal -->
-                <div class="container border border-danger w-75 my-5 rounded">
+                <div class="container w-100 my-5 rounded">
                     <div class="row align-items-stretch">
-                        <div class="col bg d-lg-block"></div>
+                        <div class="col course-img d-lg-block"></div>
                         <!-- <div class="col"> -->
                         <div class="col bg-light p-5 d-flex flex-column justify-content-center">
                             <h2 class="d-flex justify-content-center"><?php echo $course['name'] ?></h2>
@@ -121,9 +124,3 @@ if ($result) {
 </body>
 
 </html>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
-</style>
